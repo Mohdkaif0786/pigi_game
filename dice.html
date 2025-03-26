@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dice</title>
+    <style>
+      * {
+        margin: 0px;
+        padding: 0px;
+      }
+      body {
+        background: linear-gradient(rgb(239, 85, 85), rgb(255, 54, 54)) 0 100%
+          no-repeat;
+        background-size: 100% 50%;
+        /* background-repeat: no-repeat; */
+        height: 100vh;
+      }
+      #container {
+        width: 40%;
+        height: 300px;
+        border: 1px solid red;
+        position: absolute;
+        top: 20%;
+        background-color: white;
+        border: 1px solid white;
+        transform: translateX(70%);
+        box-shadow: 2px 1px 8px 1px rgba(0, 0, 0, 0.4);
+        text-align: center;
+      }
+      #dice_box {
+        /* width: 40%; */
+        height: auto;
+        text-align: center;
+        margin: 20px 0px;
+        /* border: 1px solid red; */
+      }
+      #dice_box img {
+        width: 65px;
+        box-shadow: 3px 2px 16px 1px rgba(0, 0, 0, 0.7);
+      }
+      #msg {
+        font-size: 28px;
+        margin-bottom: 30px;
+        /* font-family:Verdana, Geneva, Tahoma, sans-serif; */
+        font-weight: 550;
+      }
+      #btn {
+        width: 180px;
+        padding: 14px 0;
+        height: auto;
+        border: 0px;
+        outline: 0px;
+        border-radius: 4px;
+        box-shadow: 3px 2px 3px rgba(0, 0, 0, 0.4);
+        background-color: rgb(255, 60, 60);
+        letter-spacing: 1px;
+        font-weight: 600;
+        color: whitesmoke;
+        cursor: pointer;
+        /* animation: all; */
+      }
+      #btn:active {
+        animation: slow 3s infinite;
+        transform: scale(1.2);
+      }
+      .shake {
+        animation: shake 0.2s infinite alternate-reverse;
+      }
+      @keyframes shake {
+        0% {
+          transform: rotate(0deg);
+        }
+        50% {
+          transform: rotate(360deg);
+        }
+        100% {
+          transform: rotate(0deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div id="dice_box">
+        <img src="image/dice-six-faces-one.png" alt="" />
+      </div>
+      <p id="msg">Your Score is,</p>
+      <button id="btn" onclick="start()">ROLL THE DICE</button>
+    </div>
+  </body>
+  <script>
+    let images = [
+      "image/dice-six-faces-one.png",
+      "image/dice-six-faces-two.png",
+      "image/dice-six-faces-three.png",
+      "image/dice-six-faces-four.png",
+      "image/dice-six-faces-five.png",
+      "image/dice-six-faces-six.png",
+    ];
+    let dice = document.querySelector("img");
+    let meg = document.getElementById("msg");
+    console.log(msg);
+    function start() {
+      let number = Math.floor(Math.random() * 6);
+      let score = 0;
+      console.log(number);
+      for (i = 0; i < images.length; i++) {
+        dice.classList.add("shake");
+        if (number == i) {
+          setTimeout(function () {
+            dice.classList.remove("shake");
+          }, 1000);
+          dice.setAttribute("src", images[i]);
+
+          msg.innerHTML = "Your Score is," + (i + 1);
+        }
+      }
+    }
+  </script>
+</html>

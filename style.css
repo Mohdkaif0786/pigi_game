@@ -1,0 +1,249 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:ital,wght@1,300&family=Work+Sans:wght@300&display=swap");
+* {
+  margin: 0px;
+  padding: 0px;
+}
+body {
+  height: 100vh;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  background-image: linear-gradient(to right, #ff7d7d, #ff5252 30%, #a70000);
+  background-repeat: no-repeat;
+}
+#container {
+  width: 840px;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: auto;
+  display: flex;
+  box-shadow: 1px 2px 6px 4px rgba(0, 0, 0, 0.2);
+  font-family: "Work Sans", sans-serif;
+  /* min-width: 500px; */
+}
+.column {
+  width: 50%;
+  height: 100%;
+  margin: 0px;
+  padding: 30px 0px 90px 0px;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: #ff2f2f;
+}
+.player {
+  margin-bottom: 0px;
+  font-size: 30px;
+  /* border: 1px solid red; */
+}
+.score {
+  font-size: 47px;
+  /* border: 1px solid red; */
+  margin-top: 7px;
+  font-weight: 800;
+  color: #9a1673;
+}
+.current {
+  width: 174px;
+  padding: 0px;
+  box-sizing: border-box;
+  text-align: center;
+  height: 80px;
+  margin: 50px auto;
+  background-color: #a70000;
+  box-shadow: 6px 3px 3px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+.active {
+  background-color: rgb(243, 127, 143);
+}
+.current_label {
+  font-weight: 600;
+  color: whitesmoke;
+  padding-top: 5px;
+}
+.current_score {
+  margin-top: 0px;
+  box-sizing: border-box;
+  font-weight: 900;
+  color: whitesmoke;
+  font-size: 30px;
+}
+#dice_img {
+  /* border: 3px solid red; */
+  width: 54px;
+  position: absolute;
+  box-shadow: 2px 3px 9px 1px rgba(0, 0, 0, 0.4);
+  top: 35%;
+  left: 48%;
+}
+.btn {
+  width: 140px;
+  padding: 10px 0px;
+  font-size: 18px;
+  border-radius: 25px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  box-shadow: 2px 3px 4px 1px rgba(0, 0, 0, 0.4);
+}
+.btn:active {
+  animation: beat 4s infinite reverse;
+}
+@keyframes beat {
+  to {
+    transform: scale(0.9);
+  }
+}
+#icon_new {
+  font-size: 22px;
+  color: lightslategray;
+}
+.btn_new {
+  position: absolute;
+  top: 22%;
+  left: 44%;
+  /* background: lightgray; */
+}
+.btn_roll {
+  position: absolute;
+  top: 50%;
+  left: 45%;
+  /* box-shadow: 2px 3px 4px 1px rgba(0, 0, 0, 0.4); */
+}
+.btn_hold {
+  width: 120px;
+  position: absolute;
+  top: 63%;
+  left: 45%;
+  /* border: 2px solid red; */
+}
+.dice_icon {
+  color: grey;
+  box-shadow: 2px 3px 7px 1px rgba(0, 0, 0, 0.4);
+  border-radius: 2px;
+  /* border: 1px solid red; */
+}
+.joystick_icon {
+  color: rgb(218, 52, 52);
+}
+.hidden {
+  display: none;
+}
+.win {
+  background-image: linear-gradient(
+    to left,
+    rgba(20, 20, 20),
+    rgba(0, 0, 0, 0.4)
+  );
+  color: #9a1673;
+}
+@media (max-width: 862px) {
+  #container {
+    width: 700px;
+  }
+  .btn_new {
+    position: absolute;
+    top: 22%;
+    left: 44%;
+    width: 130px;
+    padding: 10px 0px;
+    /* background: lightgray; */
+  }
+  .btn_roll {
+    position: absolute;
+    top: 50%;
+    left: 44%;
+    width: 120px;
+    /* box-shadow: 2px 3px 4px 1px rgba(0, 0, 0, 0.4); */
+  }
+  .btn_hold {
+    width: 100px;
+    top: 63%;
+    left: 44%;
+    /* border: 2px solid red; */
+  }
+}
+@media (max-width: 728px) {
+  #container {
+    width: 600px;
+  }
+  #dice_img {
+    width: 48px;
+    /* border: 2px solid red; */
+  }
+  .btn {
+    font-size: 14px;
+  }
+  .current {
+    width: 134px;
+    height: 70px;
+  }
+  .btn_new {
+    width: 120px;
+    height: 40px;
+    padding: 0px;
+  }
+  .btn_roll {
+    width: 110px;
+  }
+  /* .btn_hold {
+    width: 100px;
+    /* border: 2px solid red; 
+  } */
+}
+@media (max-width: 626px) {
+  /* body {
+    width: 100%;
+    height: 100vh;
+    margin: 0px;
+    padding: 0px;
+  } */
+  #container {
+    width: 100%;
+    height: 100vh;
+    display: block;
+  }
+  .column {
+    width: 100%;
+    height: 50vh;
+    padding: 70px 0px 0px 0px;
+  }
+  #dice_img {
+    width: 48px;
+    top: 40%;
+  }
+  .btn {
+    font-size: 14px;
+  }
+  .current {
+    width: 194px;
+    height: 80px;
+  }
+  .btn_new {
+    width: 160px;
+    height: 48px;
+    top: 1%;
+    left: 33%;
+    font-size: 18px;
+  }
+  .btn_roll {
+    width: 145px;
+    height: 45px;
+    font-size: 18px;
+    top: 49%;
+    left: 33%;
+  }
+  .btn_hold {
+    width: 120px;
+    font-size: 18px;
+    height: 45px;
+    top: 56%;
+    left: 33%;
+  }
+}

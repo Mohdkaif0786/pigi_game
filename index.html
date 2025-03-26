@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pigi game</title>
+
+    <!-- css link -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- link css -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
+    />
+  </head>
+  <body>
+    <div id="container">
+      <!-- column_one -->
+      <div class="column active col-1" id="column_one">
+        <h2 class="player p_one" id="p_1_title">Player 1</h2>
+        <p class="score score_1">0</p>
+        <div class="current cur_one">
+          <p class="current_label">current</p>
+          <p class="current_score" id="p_1_curScore">0</p>
+        </div>
+      </div>
+      <!-- column_two -->
+      <div class="column col-2" id="column_two">
+        <h2 class="player p_two">Player 2</h2>
+        <p class="score score_2">0</p>
+        <div class="current cur_two">
+          <h4 class="current_label">current</h4>
+          <p class="current_score" id="p_2_curScore">0</p>
+        </div>
+      </div>
+    </div>
+    <img src="image/ludo_1.png" alt="" id="dice_img" />
+    <button class="btn btn_new">
+      <i class="bi bi-play-fill" id="icon_new"></i>&nbspNew Game
+    </button>
+    <button class="btn btn_roll" id="btn_roll_dice">
+      <i class="bi bi-dice-1 dice_icon"></i>&nbsp Roll Dice
+    </button>
+    <button class="btn btn_hold">
+      <i class="bi bi-joystick joystick_icon"></i> &nbspHold
+    </button>
+    <h2 style="text-align: center; margin: 0px; color: cadetblue;">cnn</h2>
+  </body>
+
+  <script>
+    // selecting element
+    let score_oneElm = document.querySelector(".score_1");
+    let score_twoElm = document.querySelector(".score_2");
+    let dice = document.querySelector("img");
+    let btnNewElm = document.querySelector(".btn_new");
+    let btnRollElm = document.querySelector(".btn_roll");
+    let btnHoldElm = document.querySelector(".btn_hold");
+    let col_one = document.getElementById("column_one");
+    let col_two = document.getElementById("column_two");
+    let playing = true;
+    // console.log(document.querySelector(".col-1"));
+    // startinng condition
+    score_oneElm.innerHTML = 0;
+    score_twoElm.textContent = 0;
+    let curScore = 0;
+    dice.classList.add("hidden");
+    let scores = [0, 0, 0];
+    let activeMode = 1;
+    let swtchPlayer = function () {
+      document.getElementById(`p_${activeMode}_curScore`).textContent = 0;
+      curScore = 0;
+      activeMode = activeMode == 1 ? 2 : 1;
+      col_one.classList.toggle("active");
+      col_two.classList.toggle("active");
+    };
+    // Rolling Dice functionality\
+    btnRollElm.addEventListener("click", function () {
+      //1. Generate Random no
+      if (playing) {
+        let Comp_no = Number(Math.floor(Math.random() * 6) + 1);
+        console.log(Comp_no);
+        // let p_first_curScore = document.getElementById("p_one_curScore");
+        // let p_sec_curScore = document.getElementById("p_two_curScore");
+
+        // 2. Display dice
+        dice.classList.remove("hidden");
+        dice.src = `image/ludo_${Comp_no}.png`;
+
+        //3.check for rolled
+        if (Comp_no !== 1) {
+          //add dice in currentn score
+          curScore += Comp_no;
+          document.getElementById(
+            `p_${activeMode}_curScore`
+          ).textContent = curScore;
+        } else {
+          // switch to next player
+          swtchPlayer();
+        }
+      }
+    });
+
+    // this is hold button codes
+    btnHoldElm.addEventListener("click", function () {
+      if (playing) {
+        //  1. add score
+        scores[activeMode] += curScore;
+        curScore = 0;
+        document.querySelector(`.score_${activeMode}`).textContent =
+          scores[activeMode];
+
+        //2. score>=100 check
+        if (scores[activeMode] >= 100) {
+          // document.querySelector(`.col-${activeMode}`).classList.remove("active");
+          document.querySelector(`.col-${activeMode}`).classList.add("win");
+          dice.classList.add("hidden");
+          dice.classList.remove("active");
+          playing = false;
+        } else {
+          // 3.switch palyer
+          swtchPlayer();
+        }
+      }
+    });
+    btnNewElm.addEventListener("click", function () {
+      playing = true;
+      curScore = 0;
+      scores = [0, 0, 0];
+      activeMode = 1;
+      score_oneElm.textContent = 0;
+      score_twoElm.textContent = 0;
+      document.getElementById(`p_1_curScore`).textContent = 0;
+      document.getElementById(`p_2_curScore`).textContent = 0;
+      dice.classList.remove("hidden");
+      document.querySelector(`.col-1`).classList.remove("win");
+      document.querySelector(`.col-2`).classList.remove("win");
+      document.querySelector(`.col-1`).classList.add("active");
+      document.querySelector(`.col-2`).classList.remove("active");
+    });
+  </script>
+</html>
